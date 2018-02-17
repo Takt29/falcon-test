@@ -18,12 +18,12 @@ class SampleResource(object):
         resp.status = falcon.HTTP_200 # デフォルトで200なので無くて良い
 
 wsgi_app = falcon.API()
-app.add_route("/hello", SampleResource())
+wsgi_app.add_route("/hello", SampleResource())
 
 if __name__ == "__main__":
     from wsgiref import simple_server
     
-    httpd = simple_server.make_server("localhost", 8000, app)
+    httpd = simple_server.make_server("localhost", 8000, wsgi_app)
     httpd.serve_forever()
 
 
